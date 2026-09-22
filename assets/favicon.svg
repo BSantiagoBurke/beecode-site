@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="145 55 90 90">
+  <defs>
+    <linearGradient id="beeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6FA3F5"/>
+      <stop offset="100%" stop-color="#A98CF0"/>
+    </linearGradient>
+  </defs>
+  <rect x="145" y="55" width="90" height="90" rx="18" fill="#111B33"/>
+  <g stroke="#8B7BD8" stroke-width="1.5" fill="none" opacity="0.4">
+    <polygon points="203.9,92 203.9,108 190,116 176.1,108 176.1,92 190,84"/>
+    <polygon points="231.6,92 231.6,108 217.7,116 203.8,108 203.8,92 217.7,84"/>
+    <polygon points="176.2,92 176.2,108 162.3,116 148.4,108 148.4,92 162.3,84"/>
+    <polygon points="217.75,68 217.75,84 203.85,92 189.95,84 189.95,68 203.85,60"/>
+    <polygon points="190.05,68 190.05,84 176.15,92 162.25,84 162.25,68 176.15,60"/>
+    <polygon points="217.75,116 217.75,132 203.85,140 189.95,132 189.95,116 203.85,108"/>
+    <polygon points="190.05,116 190.05,132 176.15,140 162.25,132 162.25,116 176.15,108"/>
+  </g>
+  <polygon points="158,80 178,68 178,98 158,104" fill="#2A3560" opacity="0.9"/>
+  <polygon points="222,80 202,68 202,98 222,104" fill="#2A3560" opacity="0.9"/>
+  <polygon points="190,58 210,70 210,94 190,106 170,94 170,70" fill="url(#beeGrad)"/>
+  <polygon points="190,98 208,109 208,131 190,142 172,131 172,109" fill="url(#beeGrad)"/>
+  <rect x="170" y="76" width="40" height="6" fill="#111B33" opacity="0.7"/>
+  <rect x="172" y="115" width="36" height="6" fill="#111B33" opacity="0.7"/>
+</svg>
