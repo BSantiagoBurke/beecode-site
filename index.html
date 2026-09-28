@@ -221,6 +221,41 @@
   .service-row h3{font-size:20px;}
   .service-row p{color:var(--text-muted);font-size:15.5px;max-width:58ch;}
 
+
+  /* ===== PORTFOLIO ===== */
+  .portfolio{background:var(--bg-panel);}
+  .work-group{margin-bottom:56px;}
+  .work-group:last-child{margin-bottom:0;}
+  .work-group-head{display:flex;align-items:center;gap:12px;margin-bottom:22px;color:var(--periwinkle);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;}
+  .work-group-head .dot{width:8px;height:8px;background:var(--gradient);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);}
+  .work-group-head::after{content:"";flex:1;height:1px;background:var(--line);}
+  .work-list{display:grid;gap:22px;}
+  .work-card{
+    display:grid;grid-template-columns:1fr;background:var(--bg-panel-2);
+    border:1px solid var(--line);clip-path:var(--hex-cut);
+    transition:border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  @media(min-width:760px){ .work-card{grid-template-columns:minmax(260px,0.95fr) 1.05fr;} }
+  a.work-card:hover{border-color:var(--purple);transform:translateY(-3px);box-shadow:0 14px 40px -18px rgba(169,140,240,0.5);}
+  .work-media{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--line);}
+  @media(min-width:760px){ .work-media{border-bottom:none;border-right:1px solid var(--line);aspect-ratio:auto;min-height:240px;} }
+  .work-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.4s ease;}
+  a.work-card:hover .work-media img{transform:scale(1.03);}
+  .work-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 20%, rgba(111,163,245,0.18), transparent 60%),radial-gradient(circle at 80% 90%, rgba(169,140,240,0.2), transparent 55%);}
+  .work-ph span{font-family:'Fraunces',serif;font-size:28px;color:var(--text-dim);}
+  .work-body{padding:30px 30px 32px;display:flex;flex-direction:column;justify-content:center;gap:10px;}
+  .work-type{font-size:13px;font-weight:700;color:var(--periwinkle);letter-spacing:0.04em;}
+  .work-body h3{font-size:24px;}
+  .work-body p{color:var(--text-muted);font-size:15.5px;max-width:52ch;}
+  .work-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .work-tags span{font-size:12.5px;color:var(--text-dim);border:1px solid var(--line);padding:4px 10px;}
+  .work-link{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:14.5px;}
+  .work-link svg{width:16px;height:16px;transition:transform 0.2s ease;}
+  a.work-card:hover .work-link svg{transform:translate(3px,-3px);}
+  .work-private{margin-top:10px;font-size:13.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:8px;}
+  .work-private svg{width:15px;height:15px;}
+
   .process{background:var(--bg-panel);}
   .process-list{display:grid;gap:0;}
   @media(min-width:860px){ .process-list{grid-template-columns:repeat(4,1fr);} }
@@ -267,7 +302,66 @@
   .final-cta{position:relative;padding:100px 0;overflow:hidden;}
   .final-inner{position:relative;z-index:2;max-width:680px;}
   .final-cta h2{font-size:clamp(28px,3.8vw,40px);margin-bottom:20px;}
-  .final-cta p{color:var(--text-muted);font-size:17px;margin-bottom:36px;max-width:52ch;}
+  .final-inner p{color:var(--text-muted);font-size:17px;margin-bottom:36px;max-width:52ch;}
+
+
+  /* ===== CONTACTO / FORMULARIO ===== */
+  .contact-grid{position:relative;z-index:2;display:grid;gap:48px;align-items:center;}
+  @media(min-width:960px){ .contact-grid{grid-template-columns:1fr 0.95fr;gap:72px;} }
+  .contact-eyebrow{font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--periwinkle);margin-bottom:18px;display:block;}
+  .contact-copy h2{font-size:clamp(30px,4vw,44px);margin-bottom:20px;}
+  .contact-copy > p{color:var(--text-muted);font-size:17.5px;max-width:48ch;margin-bottom:32px;}
+  .check-list{list-style:none;display:grid;gap:16px;margin-bottom:34px;}
+  .check-list li{display:flex;gap:14px;align-items:center;color:var(--text-muted);font-size:16px;}
+  .check-list .ck{width:26px;height:26px;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1.5px solid var(--blue);border-radius:50%;color:var(--blue);}
+  .check-list .ck svg{width:14px;height:14px;}
+  .contact-alt{font-size:14.5px;color:var(--text-dim);}
+  .contact-alt a{color:var(--text-muted);border-bottom:1px solid var(--line-strong);}
+  .contact-alt a:hover{color:var(--text);border-color:var(--purple);}
+
+  .form-card{background:var(--bg-panel-2);border:1px solid var(--line-strong);border-radius:22px;padding:36px 32px 30px;box-shadow:0 30px 80px -40px rgba(111,163,245,0.35);}
+  @media(max-width:520px){ .form-card{padding:28px 20px 24px;} }
+  .form-card h3{font-size:24px;margin-bottom:6px;}
+  .form-card .form-sub{color:var(--text-muted);font-size:15px;margin-bottom:24px;}
+  .intent-toggle{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;background:var(--bg);border:1px solid var(--line);border-radius:12px;margin-bottom:22px;}
+  .intent-toggle input{position:absolute;opacity:0;pointer-events:none;}
+  .intent-toggle label{text-align:center;padding:10px 8px;font-size:14px;font-weight:600;color:var(--text-dim);border-radius:8px;cursor:pointer;transition:background 0.15s ease,color 0.15s ease;line-height:1.3;}
+  .intent-toggle input:checked + label{background:var(--bg-panel-2);color:var(--text);box-shadow:inset 0 0 0 1px var(--line-strong);}
+  .intent-toggle input:focus-visible + label{outline:2px solid var(--purple);outline-offset:2px;}
+  .field{margin-bottom:16px;}
+  .field-row{display:grid;gap:0 14px;}
+  @media(min-width:560px){ .field-row{grid-template-columns:1fr 1fr;} }
+  .field label{display:block;font-size:14px;font-weight:600;color:var(--text);margin-bottom:7px;}
+  .field label .req{color:var(--purple);}
+  .field label .opt{color:var(--text-dim);font-weight:500;}
+  .field input,.field select,.field textarea{
+    width:100%;font:inherit;font-size:15.5px;color:var(--text);
+    background:var(--bg);border:1px solid var(--line-strong);border-radius:10px;
+    padding:13px 14px;transition:border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .field textarea{min-height:104px;resize:vertical;}
+  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237C84A3' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-right:40px;}
+  .field select:invalid{color:var(--text-dim);}
+  .field option{color:#111B33;}
+  .field input::placeholder,.field textarea::placeholder{color:var(--text-dim);}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(169,140,240,0.2);}
+  .field input:user-invalid,.field select:user-invalid{border-color:#E57C8A;}
+  .call-only{display:none;}
+  .form-card[data-intent="llamada"] .call-only{display:block;}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .form-submit{width:100%;justify-content:center;margin-top:6px;padding:15px 24px;font-size:16px;border-radius:12px;clip-path:none;}
+  .form-submit[disabled]{opacity:0.7;cursor:wait;transform:none;}
+  .form-note{margin-top:16px;font-size:13px;color:var(--text-dim);text-align:center;}
+  .form-error{display:none;margin-top:14px;font-size:14px;color:#F0A3AD;text-align:center;}
+  .form-error.show{display:block;}
+  .form-error a{text-decoration:underline;}
+  .form-success{display:none;text-align:center;padding:24px 4px;}
+  .form-card.sent form{display:none;}
+  .form-card.sent .form-success{display:block;}
+  .form-success .ok{width:56px;height:56px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;background:var(--gradient);clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);color:#111B33;}
+  .form-success .ok svg{width:26px;height:26px;}
+  .form-success h3{margin-bottom:10px;}
+  .form-success p{color:var(--text-muted);font-size:15.5px;margin-bottom:22px;}
 
   footer{border-top:1px solid var(--line);padding:40px 0;}
   .footer-row{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:var(--text-dim);font-size:14px;}
@@ -358,13 +452,14 @@
 
     <nav class="main-nav" aria-label="Navegación principal">
       <a class="nav-link" data-target="servicios" href="#servicios">Servicios</a>
+      <a class="nav-link" data-target="portfolio" href="#portfolio">Proyectos</a>
       <a class="nav-link" data-target="proceso" href="#proceso">Proceso</a>
       <a class="nav-link" data-target="sobre-mi" href="#sobre-mi">Sobre mí</a>
       <a class="nav-link" data-target="faq" href="#faq">FAQ</a>
     </nav>
 
     <div class="header-right">
-      <a class="btn btn-ghost btn-sm" href="#contacto" data-target="contacto">Hablemos</a>
+      <a class="btn btn-ghost btn-sm" href="#contacto" data-target="contacto" data-intent="propuesta">Hablemos</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" id="menuIcon"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
       </button>
@@ -372,10 +467,11 @@
   </div>
   <nav class="mobile-nav" id="mobileNav" aria-label="Navegación móvil">
     <a data-target="servicios" href="#servicios">Servicios</a>
+    <a data-target="portfolio" href="#portfolio">Proyectos</a>
     <a data-target="proceso" href="#proceso">Proceso</a>
     <a data-target="sobre-mi" href="#sobre-mi">Sobre mí</a>
     <a data-target="faq" href="#faq">FAQ</a>
-    <a data-target="contacto" href="#contacto">Contacto</a>
+    <a data-target="contacto" data-intent="propuesta" href="#contacto">Contacto</a>
   </nav>
 </header>
 
@@ -402,7 +498,7 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.4 8.4 0 0 0 12 4a8.5 8.5 0 0 0-7.4 12.8L3 21l4.3-1.5A8.5 8.5 0 0 0 12 20.5a8.5 8.5 0 0 0 5.6-14.2zm-5.6 12.8c-1.4 0-2.7-.4-3.9-1l-.3-.2-2.4.8.8-2.3-.2-.3A6.9 6.9 0 0 1 12 5.6a6.9 6.9 0 1 1 0 13.5z"/><path d="M15.7 13.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-1.3-.6-2.2-1.4-2.8-2.6-.1-.2-.1-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6l-.6-1.4c-.2-.4-.4-.3-.6-.3h-.5c-.2 0-.5.1-.6.4-.2.4-.7 1.1-.4 2.4.3 1.4 1.7 3.5 3.9 4.6 2.4 1.2 2.9.9 3.4.8.5-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1z"/></svg>
           Escribime por WhatsApp
         </a>
-        <a class="btn btn-ghost" href="https://wa.me/5493816378896?text=Hola%20Santiago!%20Quiero%20agendar%20una%20llamada%20para%20hablar%20de%20mi%20proyecto" target="_blank" rel="noopener">Agendar una llamada</a>
+        <a class="btn btn-ghost" href="#contacto" data-target="contacto" data-intent="llamada">Agendar una llamada</a>
       </div>
 
       <div class="trust-strip">
@@ -533,6 +629,64 @@
   </div>
 </section>
 
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Proyectos</h2>
+      <p>Algunos de los trabajos que ya están funcionando para negocios reales.</p>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head"><span class="dot"></span>Landing pages</div>
+      <div class="work-list">
+        <a class="work-card" href="https://taf-is.vercel.app/" target="_blank" rel="noopener">
+          <div class="work-media">
+            <div class="work-ph" aria-hidden="true"><span>Tafí's</span></div>
+            <img src="assets/portfolio/tafis.jpg" alt="Captura de la landing page de Tafí's Empanadas" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="work-body">
+            <span class="work-type">Landing page para venta de productos</span>
+            <h3>Tafí's Empanadas</h3>
+            <p>Landing para una marca de empanadas tucumanas artesanales congeladas. Incluye un armador de pedidos por docena y sabor que manda el pedido listo por WhatsApp, más una guía de cocción.</p>
+            <span class="work-link">Ver la página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          </div>
+        </a>
+
+        <a class="work-card" href="https://burke-asociados.vercel.app/" target="_blank" rel="noopener">
+          <div class="work-media">
+            <div class="work-ph" aria-hidden="true"><span>Burke &amp; Asociados</span></div>
+            <img src="assets/portfolio/burke.jpg" alt="Captura del sitio de Burke y Asociados" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="work-body">
+            <span class="work-type">Landing de presentación de estudio jurídico</span>
+            <h3>Burke y Asociados</h3>
+            <p>Sitio de presentación del estudio con sus datos de contacto y ubicación, optimizado para aparecer en Google cuando alguien busca abogados en Tucumán.</p>
+            <span class="work-link">Ver la página <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head"><span class="dot"></span>Software</div>
+      <div class="work-list">
+        <div class="work-card">
+          <div class="work-media">
+            <div class="work-ph" aria-hidden="true"><span>Alem Vidrios</span></div>
+            <img src="assets/portfolio/vidrios.jpg" alt="Captura del optimizador de cortes de Alem Vidrios" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="work-body">
+            <span class="work-type">Software a medida</span>
+            <h3>Software de optimización</h3>
+            <p>Sistema para Alem Vidrios que calcula la mejor forma de cortar cada plancha, reduciendo al mínimo el material desperdiciado.</p>
+            <span class="work-private"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Uso interno del cliente</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="process" id="proceso">
   <div class="wrap">
     <div class="section-head">
@@ -646,15 +800,77 @@
   <div class="hexfield" aria-hidden="true">
     <svg width="100%" height="100%" preserveAspectRatio="xMidYMid slice"><rect width="100%" height="100%" fill="url(#hexpat)"/></svg>
   </div>
-  <div class="wrap final-inner">
-    <h2>Elegir quién te hace tu primera web es elegir con quién vas a construir la base de tu negocio online.</h2>
-    <p>Escribime y arrancamos, sin vueltas.</p>
-    <div class="cta-row">
-      <a class="btn" href="https://wa.me/5493816378896?text=Hola%20Santiago!%20Quiero%20contarte%20sobre%20mi%20proyecto" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.4 8.4 0 0 0 12 4a8.5 8.5 0 0 0-7.4 12.8L3 21l4.3-1.5A8.5 8.5 0 0 0 12 20.5a8.5 8.5 0 0 0 5.6-14.2zm-5.6 12.8c-1.4 0-2.7-.4-3.9-1l-.3-.2-2.4.8.8-2.3-.2-.3A6.9 6.9 0 0 1 12 5.6a6.9 6.9 0 1 1 0 13.5z"/><path d="M15.7 13.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-1.3-.6-2.2-1.4-2.8-2.6-.1-.2-.1-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6l-.6-1.4c-.2-.4-.4-.3-.6-.3h-.5c-.2 0-.5.1-.6.4-.2.4-.7 1.1-.4 2.4.3 1.4 1.7 3.5 3.9 4.6 2.4 1.2 2.9.9 3.4.8.5-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1z"/></svg>
-        Escribime por WhatsApp
-      </a>
-      <a class="btn btn-ghost" href="mailto:info@beecodelab.com">info@beecodelab.com</a>
+  <div class="wrap contact-grid">
+    <div class="contact-copy">
+      <span class="contact-eyebrow">// Último paso</span>
+      <h2>Contame tu idea y te respondo con un plan concreto.</h2>
+      <p>Completá el formulario y coordinamos una primera charla para entender tu negocio. Recién avanzamos cuando tengas claro el alcance, los tiempos y el presupuesto.</p>
+      <ul class="check-list">
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Respondo en menos de 24 hs hábiles.</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Primera llamada de 30 minutos, sin costo.</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Desde Tucumán, para toda Argentina y Latinoamérica.</li>
+      </ul>
+      <p class="contact-alt">¿Preferís escribir directo? <a href="https://wa.me/5493816378896?text=Hola%20Santiago!%20Quiero%20contarte%20sobre%20mi%20proyecto" target="_blank" rel="noopener">WhatsApp</a> o <a href="mailto:info@beecodelab.com">info@beecodelab.com</a></p>
+    </div>
+
+    <div class="form-card" id="formCard" data-intent="propuesta">
+      <form id="contactForm" novalidate>
+        <h3>Contame qué necesitás</h3>
+        <p class="form-sub">Te leo y te respondo personalmente.</p>
+
+        <div class="intent-toggle" role="radiogroup" aria-label="¿Cómo preferís seguir?">
+          <input type="radio" name="intent" id="intentProp" value="propuesta" checked>
+          <label for="intentProp">Quiero una propuesta</label>
+          <input type="radio" name="intent" id="intentCall" value="llamada">
+          <label for="intentCall">Coordinar una llamada</label>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="fNombre">Nombre <span class="req">*</span></label>
+            <input id="fNombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="fWhatsapp">WhatsApp <span class="req">*</span></label>
+            <input id="fWhatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" placeholder="+54 9 381 ..." required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fEmail">Email <span class="req">*</span></label>
+          <input id="fEmail" name="email" type="email" autocomplete="email" placeholder="vos@tuempresa.com" required>
+        </div>
+        <div class="field">
+          <label for="fTipo">¿Qué necesitás? <span class="req">*</span></label>
+          <select id="fTipo" name="tipo" required>
+            <option value="" disabled selected>Elegí una opción</option>
+            <option>Landing page</option>
+            <option>Página web institucional</option>
+            <option>Tienda online / e-commerce</option>
+            <option>Software o sistema a medida</option>
+            <option>Todavía no lo sé</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="fMensaje">Contame un poco de tu proyecto <span class="opt">(opcional)</span></label>
+          <textarea id="fMensaje" name="mensaje" placeholder="A qué se dedica tu negocio, qué te gustaría lograr, si tenés alguna fecha en mente..."></textarea>
+        </div>
+        <div class="field call-only">
+          <label for="fHorario">¿Qué días y horarios te quedan cómodos? <span class="opt">(opcional)</span></label>
+          <input id="fHorario" name="horario" type="text" placeholder="Ej: martes o jueves por la tarde">
+        </div>
+        <div class="hp" aria-hidden="true"><label>No completar <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
+
+        <button class="btn form-submit" type="submit" id="formSubmit">Pedir mi propuesta →</button>
+        <p class="form-error" id="formError" role="alert"></p>
+        <p class="form-note">Uso tus datos solo para responderte.</p>
+      </form>
+
+      <div class="form-success" id="formSuccess" aria-live="polite">
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="successTitle">¡Listo! Ya recibí tu mensaje.</h3>
+        <p id="successText">Te respondo en menos de 24 hs hábiles por WhatsApp o email.</p>
+        <a class="btn btn-ghost btn-sm" href="https://wa.me/5493816378896?text=Hola%20Santiago!%20Te%20acabo%20de%20completar%20el%20formulario%20de%20la%20web" target="_blank" rel="noopener">¿Es urgente? Escribime por WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
@@ -667,6 +883,7 @@
     </div>
     <div class="footer-links">
       <a href="#servicios" data-target="servicios">Servicios</a>
+      <a href="#portfolio" data-target="portfolio">Proyectos</a>
       <a href="#proceso" data-target="proceso">Proceso</a>
       <a href="#faq" data-target="faq">FAQ</a>
       <a href="mailto:info@beecodelab.com">info@beecodelab.com</a>
@@ -698,7 +915,7 @@
   });
 
   const navLinks = document.querySelectorAll('.nav-link, .mobile-nav a');
-  const targets = ['servicios','proceso','sobre-mi','faq','contacto'];
+  const targets = ['servicios','portfolio','proceso','sobre-mi','faq','contacto'];
   const sections = targets.map(id => document.getElementById(id)).filter(Boolean);
 
   const setActive = (id) => {
@@ -733,6 +950,97 @@
       document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
       if (!wasOpen) item.classList.add('open');
     });
+  });
+
+  // ===== Formulario de contacto =====
+  // Pegá acá la access key de Web3Forms (web3forms.com) para recibir los formularios por email.
+  // Mientras esté vacía, el formulario abre WhatsApp con el mensaje ya armado.
+  const WEB3FORMS_KEY = '316c7807-b0b9-41f7-8d38-ede01ee35149';
+  const WA_NUMBER = '5493816378896';
+
+  const formCard = document.getElementById('formCard');
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('formSubmit');
+  const formError = document.getElementById('formError');
+  const submitLabels = { propuesta: 'Pedir mi propuesta →', llamada: 'Coordinar la llamada →' };
+
+  const setIntent = (intent) => {
+    formCard.dataset.intent = intent;
+    const radio = form.querySelector(`input[name="intent"][value="${intent}"]`);
+    if (radio) radio.checked = true;
+    submitBtn.textContent = submitLabels[intent];
+  };
+  form.querySelectorAll('input[name="intent"]').forEach(r => r.addEventListener('change', () => setIntent(r.value)));
+
+  document.querySelectorAll('a[data-intent]').forEach(link => {
+    link.addEventListener('click', () => {
+      setIntent(link.dataset.intent);
+      setTimeout(() => document.getElementById('fNombre').focus({ preventScroll: true }), 700);
+    });
+  });
+
+  const buildWaText = (d) => {
+    const lines = [
+      d.intent === 'llamada' ? 'Hola Santiago! Quiero coordinar una llamada.' : 'Hola Santiago! Quiero pedir una propuesta.',
+      `Nombre: ${d.nombre}`, `Email: ${d.email}`, `WhatsApp: ${d.whatsapp}`, `Necesito: ${d.tipo}`
+    ];
+    if (d.mensaje) lines.push(`Proyecto: ${d.mensaje}`);
+    if (d.intent === 'llamada' && d.horario) lines.push(`Horarios: ${d.horario}`);
+    return encodeURIComponent(lines.join('\n'));
+  };
+
+  const showSuccess = (viaWhatsApp) => {
+    if (viaWhatsApp) {
+      document.getElementById('successTitle').textContent = '¡Casi listo!';
+      document.getElementById('successText').textContent = 'Se abrió WhatsApp con tu mensaje armado. Solo falta que lo envíes.';
+    }
+    formCard.classList.add('sent');
+  };
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.remove('show');
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const d = Object.fromEntries(new FormData(form).entries());
+    if (d.botcheck) return;
+    if (d.intent !== 'llamada') delete d.horario;
+
+    const waUrl = `https://wa.me/${WA_NUMBER}?text=${buildWaText(d)}`;
+
+    if (!WEB3FORMS_KEY) {
+      window.open(waUrl, '_blank', 'noopener');
+      showSuccess(true);
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject: `Nuevo contacto web (${d.intent === 'llamada' ? 'llamada' : 'propuesta'}): ${d.nombre}`,
+          from_name: 'beecodelab.com',
+          replyto: d.email,
+          ...d
+        })
+      });
+      const json = await res.json();
+      if (!json.success) throw new Error(json.message);
+      form.reset();
+      showSuccess(false);
+    } catch (err) {
+      formError.innerHTML = `No se pudo enviar. <a href="${waUrl}" target="_blank" rel="noopener">Mandámelo por WhatsApp</a> y te respondo igual.`;
+      formError.classList.add('show');
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = submitLabels[formCard.dataset.intent];
+    }
   });
 </script>
 
