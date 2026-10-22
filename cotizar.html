@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cotizá tu proyecto · Bee Code</title>
+<meta name="description" content="Sistemas de turnos, páginas web y software a medida para negocios de Tucumán. Pedí tu cotización y te respondo en menos de 24 horas.">
+<link rel="canonical" href="https://beecodelab.com/cotizar">
+<meta property="og:title" content="Cotizá tu proyecto · Bee Code">
+<meta property="og:description" content="Sistemas de turnos, páginas web y software a medida para negocios de Tucumán. Pedí tu cotización y te respondo en menos de 24 horas.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://beecodelab.com/cotizar">
+<meta property="og:site_name" content="Bee Code">
+<meta property="og:locale" content="es_AR">
+<meta property="og:image" content="https://beecodelab.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Bee Code · software y páginas web a medida en Tucumán">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#111B33">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/base.css">
+<style>
+  /* ===== /cotizar ===== */
+  .q-wrap{max-width:640px;margin:0 auto;padding:0 20px;}
+  @media(min-width:640px){ .q-wrap{padding:0 32px;} }
+  .q-header .header-row{padding-top:13px;padding-bottom:13px;justify-content:space-between;gap:12px;}
+  .q-badge{font-size:13px;color:var(--text-dim);text-align:right;line-height:1.35;}
+  .q-badge strong{color:var(--text-muted);font-weight:600;}
+
+  .q-intro{padding:28px 0 22px;}
+  .q-intro h1{font-size:clamp(30px,8.4vw,44px);margin-bottom:12px;}
+  .q-intro p{color:var(--text-muted);font-size:16.5px;max-width:46ch;}
+
+  .q-main section{padding:0;}
+  .q-form .form-card{padding:26px 20px 24px;}
+  #quoteCard{scroll-margin-top:84px;}
+  @media(min-width:520px){ .q-form .form-card{padding:32px 30px 28px;} }
+
+  fieldset.choice-group{border:0;margin:0 0 18px;padding:0;min-width:0;}
+  .choice-group legend{font-size:14px;font-weight:600;color:var(--text);margin-bottom:9px;padding:0;}
+  .choice-group legend .req{color:var(--purple);}
+  .choice-group legend .opt{color:var(--text-dim);font-weight:500;}
+  .sr-input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none;}
+
+  .choice-cards{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .choice-cards .choice:last-child{grid-column:1 / -1;}
+  .choice-cards label{
+    display:flex;align-items:center;gap:10px;min-height:56px;height:100%;
+    padding:11px 12px;background:var(--bg);border:1px solid var(--line-strong);border-radius:12px;
+    font-size:14.5px;font-weight:600;line-height:1.3;color:var(--text-muted);cursor:pointer;
+    transition:border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+  .choice-cards label::before{
+    content:"";flex-shrink:0;width:18px;height:18px;border-radius:50%;
+    border:1.5px solid var(--text-dim);box-sizing:border-box;transition:all 0.15s ease;
+  }
+  .choice{position:relative;}
+  .sr-input:checked + label{border-color:var(--purple);background:rgba(169,140,240,0.12);color:var(--text);}
+  .choice-cards .sr-input:checked + label::before{border:5px solid var(--purple);background:var(--text);}
+  .sr-input:focus-visible + label{outline:2px solid var(--purple);outline-offset:2px;}
+  .choice-group[aria-invalid="true"] .choice-cards label{border-color:#E57C8A;}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chips label{
+    display:inline-flex;align-items:center;min-height:44px;padding:9px 15px;
+    background:var(--bg);border:1px solid var(--line-strong);border-radius:999px;
+    font-size:14.5px;font-weight:600;color:var(--text-muted);cursor:pointer;
+    transition:border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  }
+
+  .q-alt{margin:18px 0 0;text-align:center;}
+  .q-alt .btn{width:100%;justify-content:center;}
+  .form-card.sent ~ .q-alt{display:none;}
+  .form-success h2{font-size:26px;margin-bottom:10px;}
+  .form-success .btn{margin-top:4px;}
+
+  .q-main .q-process{padding:48px 0 8px;}
+  .q-process h2{font-size:22px;margin-bottom:6px;}
+  .q-process > p{color:var(--text-muted);font-size:15px;margin-bottom:8px;}
+  .process-list.compact{grid-template-columns:1fr 1fr;column-gap:18px;}
+  @media(min-width:860px){ .process-list.compact{grid-template-columns:1fr 1fr;} }
+  .process-list.compact .process-item{padding:16px 0 18px;}
+  .process-list.compact .process-num{margin:6px 0 6px;font-size:14px;}
+  .process-list.compact .process-item h3{font-size:16px;margin-bottom:4px;}
+  .process-list.compact .process-item p{font-size:14px;line-height:1.5;}
+
+  .q-footer{margin-top:40px;}
+  .q-footer .footer-row{justify-content:space-between;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="beeGradInv" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6FA3F5"/>
+      <stop offset="100%" stop-color="#A98CF0"/>
+    </linearGradient>
+    <symbol id="beeIcon" viewBox="145 55 90 90">
+      <g stroke="#8B7BD8" stroke-width="1.5" fill="none" opacity="0.4">
+        <polygon points="203.9,92 203.9,108 190,116 176.1,108 176.1,92 190,84"/>
+        <polygon points="231.6,92 231.6,108 217.7,116 203.8,108 203.8,92 217.7,84"/>
+        <polygon points="176.2,92 176.2,108 162.3,116 148.4,108 148.4,92 162.3,84"/>
+        <polygon points="217.75,68 217.75,84 203.85,92 189.95,84 189.95,68 203.85,60"/>
+        <polygon points="190.05,68 190.05,84 176.15,92 162.25,84 162.25,68 176.15,60"/>
+        <polygon points="217.75,116 217.75,132 203.85,140 189.95,132 189.95,116 203.85,108"/>
+        <polygon points="190.05,116 190.05,132 176.15,140 162.25,132 162.25,116 176.15,108"/>
+      </g>
+      <polygon points="158,80 178,68 178,98 158,104" fill="#2A3560" opacity="0.9"/>
+      <polygon points="222,80 202,68 202,98 222,104" fill="#2A3560" opacity="0.9"/>
+      <polygon points="190,58 210,70 210,94 190,106 170,94 170,70" fill="url(#beeGradInv)"/>
+      <polygon points="190,98 208,109 208,131 190,142 172,131 172,109" fill="url(#beeGradInv)"/>
+      <rect x="170" y="76" width="40" height="6" fill="#111B33" opacity="0.7"/>
+      <rect x="172" y="115" width="36" height="6" fill="#111B33" opacity="0.7"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="q-header">
+  <div class="q-wrap header-row">
+    <a class="brand" href="/" aria-label="Bee Code, ir al inicio">
+      <svg class="brand-icon" aria-hidden="true"><use href="#beeIcon"/></svg>
+      <span class="brand-word"><span class="bee">bee</span><span class="code">code</span></span>
+    </a>
+    <span class="q-badge">Respondo en <strong>menos de 24 hs</strong></span>
+  </div>
+</header>
+
+<main class="q-main">
+  <div class="q-wrap">
+    <div class="q-intro">
+      <h1>Cotizá tu proyecto</h1>
+      <p>Contame qué necesitás y te respondo en menos de 24 horas hábiles con una propuesta concreta.</p>
+    </div>
+
+    <section class="q-form" aria-label="Formulario de cotización">
+      <div class="form-card" id="quoteCard">
+        <form id="quoteForm" novalidate>
+          <div class="field">
+            <label for="qNombre">Nombre <span class="req">*</span></label>
+            <input id="qNombre" name="nombre" type="text" autocomplete="name" placeholder="Tu nombre" required aria-describedby="err-nombre">
+            <p class="field-error" id="err-nombre" data-error-for="nombre" hidden></p>
+          </div>
+          <div class="field">
+            <label for="qWhatsapp">WhatsApp <span class="req">*</span></label>
+            <input id="qWhatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="381 123 4567" required aria-describedby="err-whatsapp">
+            <p class="field-error" id="err-whatsapp" data-error-for="whatsapp" hidden></p>
+          </div>
+          <div class="field">
+            <label for="qEmail">Email <span class="opt">(opcional)</span></label>
+            <input id="qEmail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="vos@tunegocio.com" aria-describedby="err-email">
+            <p class="field-error" id="err-email" data-error-for="email" hidden></p>
+          </div>
+          <div class="field">
+            <label for="qNegocio">Nombre del negocio o marca <span class="opt">(opcional)</span></label>
+            <input id="qNegocio" name="negocio" type="text" autocomplete="organization" placeholder="Ej: Estudio Luna">
+          </div>
+
+          <fieldset class="choice-group" id="servicioGroup" aria-describedby="err-servicio">
+            <legend>¿Qué necesitás? <span class="req">*</span></legend>
+            <div class="choice-cards">
+              <div class="choice"><input class="sr-input" type="radio" name="servicio" id="sTurnos" value="turnos"><label for="sTurnos">Sistema de turnos online</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="servicio" id="sWeb" value="web"><label for="sWeb">Página web para mi negocio</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="servicio" id="sTienda" value="tienda"><label for="sTienda">Tienda online</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="servicio" id="sSistema" value="sistema"><label for="sSistema">Sistema o app a medida</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="servicio" id="sNoSe" value="nose"><label for="sNoSe">Todavía no lo sé</label></div>
+            </div>
+            <p class="field-error" id="err-servicio" data-error-for="servicio" hidden></p>
+          </fieldset>
+
+          <div class="field">
+            <label for="qRubro">Rubro del negocio <span class="opt">(opcional)</span></label>
+            <input id="qRubro" name="rubro" type="text" placeholder="Ej: estética, peluquería, ropa, gastronomía">
+          </div>
+
+          <fieldset class="choice-group">
+            <legend>Presupuesto aproximado <span class="opt">(opcional)</span></legend>
+            <div class="chips">
+              <div class="choice"><input class="sr-input" type="radio" name="presupuesto" id="p1" value="Menos de $300.000"><label for="p1">Menos de $300.000</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="presupuesto" id="p2" value="$300.000 a $600.000"><label for="p2">$300.000 a $600.000</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="presupuesto" id="p3" value="$600.000 a $1.000.000"><label for="p3">$600.000 a $1.000.000</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="presupuesto" id="p4" value="Más de $1.000.000"><label for="p4">Más de $1.000.000</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="presupuesto" id="p5" value="Todavía no sé"><label for="p5">Todavía no sé</label></div>
+            </div>
+          </fieldset>
+
+          <fieldset class="choice-group">
+            <legend>¿Para cuándo lo necesitás? <span class="opt">(opcional)</span></legend>
+            <div class="chips">
+              <div class="choice"><input class="sr-input" type="radio" name="plazo" id="t1" value="Lo antes posible"><label for="t1">Lo antes posible</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="plazo" id="t2" value="Este mes"><label for="t2">Este mes</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="plazo" id="t3" value="En 1 a 3 meses"><label for="t3">En 1 a 3 meses</label></div>
+              <div class="choice"><input class="sr-input" type="radio" name="plazo" id="t4" value="Solo estoy averiguando"><label for="t4">Solo estoy averiguando</label></div>
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="qDetalle">Contame un poco más <span class="opt">(opcional)</span></label>
+            <textarea id="qDetalle" name="detalle" placeholder="Qué te gustaría lograr, cómo trabajás hoy, si tenés alguna referencia..."></textarea>
+          </div>
+
+          <div class="hp" aria-hidden="true"><label>No completar <input type="checkbox" name="botcheck" tabindex="-1"></label></div>
+
+          <button class="btn form-submit" type="submit" id="quoteSubmit">Pedir cotización</button>
+          <p class="form-error" id="quoteError" role="alert"></p>
+          <p class="form-note">Uso tus datos solo para responderte.</p>
+        </form>
+
+        <div class="form-success" id="quoteSuccess" aria-live="polite">
+          <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+          <h2 class="display" id="quoteSuccessTitle" tabindex="-1">¡Listo!</h2>
+          <p>Te escribo por WhatsApp en menos de 24 horas hábiles.</p>
+          <a class="btn" href="https://wa.me/5493816378896?text=Hola%20Santiago%21%20Vengo%20de%20Instagram%20y%20quiero%20cotizar%20un%20proyecto." target="_blank" rel="noopener">Escribirme ahora por WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="q-alt">
+        <a class="btn btn-ghost" href="https://wa.me/5493816378896?text=Hola%20Santiago%21%20Vengo%20de%20Instagram%20y%20quiero%20cotizar%20un%20proyecto." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.6 6.3A8.4 8.4 0 0 0 12 4a8.5 8.5 0 0 0-7.4 12.8L3 21l4.3-1.5A8.5 8.5 0 0 0 12 20.5a8.5 8.5 0 0 0 5.6-14.2zm-5.6 12.8c-1.4 0-2.7-.4-3.9-1l-.3-.2-2.4.8.8-2.3-.2-.3A6.9 6.9 0 0 1 12 5.6a6.9 6.9 0 1 1 0 13.5z"/><path d="M15.7 13.4c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1-1.3-.6-2.2-1.4-2.8-2.6-.1-.2-.1-.4.1-.5l.6-.7c.1-.2.1-.4 0-.6l-.6-1.4c-.2-.4-.4-.3-.6-.3h-.5c-.2 0-.5.1-.6.4-.2.4-.7 1.1-.4 2.4.3 1.4 1.7 3.5 3.9 4.6 2.4 1.2 2.9.9 3.4.8.5-.1 1.4-.6 1.6-1.1.2-.5.2-.9.1-1z"/></svg>
+          Prefiero hablar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="q-process" aria-labelledby="procesoTitulo">
+      <h2 id="procesoTitulo">Cómo trabajamos</h2>
+      <p>Cuatro pasos, sin sorpresas.</p>
+      <div class="process-list compact">
+        <div class="process-item">
+          <div class="process-num">01</div>
+          <h3>Hablamos</h3>
+          <p>Me contás tu idea, sin tecnicismos.</p>
+        </div>
+        <div class="process-item">
+          <div class="process-num">02</div>
+          <h3>Definimos</h3>
+          <p>Alcance, tiempos y presupuesto claros.</p>
+        </div>
+        <div class="process-item">
+          <div class="process-num">03</div>
+          <h3>Construyo</h3>
+          <p>Ves avances reales en el camino.</p>
+        </div>
+        <div class="process-item">
+          <div class="process-num">04</div>
+          <h3>Lanzamos</h3>
+          <p>Tu proyecto en vivo, con acceso completo.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="q-footer">
+  <div class="q-wrap footer-row">
+    <div class="footer-brand">
+      <svg aria-hidden="true"><use href="#beeIcon"/></svg>
+      <span>beecode · Tucumán, Argentina</span>
+    </div>
+    <div class="footer-links">
+      <a href="/">Inicio</a>
+      <a href="mailto:beecodelab@gmail.com">beecodelab@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="/assets/js/cotizar.js"></script>
+</body>
+</html>
