@@ -22,6 +22,12 @@ if (form && card) {
   const servicioGroup = document.getElementById('servicioGroup');
   const origin = captureOrigin();
 
+  // Mensaje de WhatsApp según el origen detectado (botón de abajo y botón de la confirmación)
+  const waIntro = origin.origen === 'instagram'
+    ? 'Hola Santiago! Vengo de Instagram y quiero cotizar un proyecto.'
+    : 'Hola Santiago! Vengo de la web y quiero cotizar un proyecto.';
+  document.querySelectorAll('[data-wa-cotizar]').forEach(a => { a.href = waUrl(waIntro); });
+
   // ?servicio=turnos|web|tienda|sistema deja la opción marcada
   const pre = new URLSearchParams(window.location.search).get('servicio');
   if (pre && SERVICIOS[pre.toLowerCase()]) {
@@ -51,10 +57,7 @@ if (form && card) {
   const clean = v => String(v ?? '').trim();
 
   const buildWaText = (d, servicio) => {
-    const intro = origin.origen === 'instagram'
-      ? 'Hola Santiago! Vengo de Instagram y quiero cotizar un proyecto.'
-      : 'Hola Santiago! Quiero cotizar un proyecto.';
-    const lines = [intro, `Nombre: ${clean(d.nombre)}`, `Necesito: ${servicio}`];
+    const lines = [waIntro, `Nombre: ${clean(d.nombre)}`, `Necesito: ${servicio}`];
     if (clean(d.negocio)) lines.push(`Negocio: ${clean(d.negocio)}`);
     if (clean(d.rubro)) lines.push(`Rubro: ${clean(d.rubro)}`);
     if (d.presupuesto) lines.push(`Presupuesto: ${d.presupuesto}`);
