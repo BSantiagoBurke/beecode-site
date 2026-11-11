@@ -105,6 +105,9 @@
   a.work-card:hover .work-link svg{transform:translate(3px,-3px);}
   .work-private{margin-top:10px;font-size:13.5px;color:var(--text-dim);display:inline-flex;align-items:center;gap:8px;}
   .work-private svg{width:15px;height:15px;}
+  .work-links{display:flex;flex-wrap:wrap;gap:4px 24px;}
+  .work-links .work-link:hover{color:var(--periwinkle);}
+  .work-links .work-link:hover svg{transform:translate(3px,-3px);}
 
   .about{display:grid;gap:48px;align-items:center;}
   @media(min-width:900px){ .about{grid-template-columns:0.85fr 1.15fr;} }
@@ -412,6 +415,28 @@
     <div class="section-head">
       <h2>Proyectos</h2>
       <p>Algunos de los trabajos que ya están funcionando para negocios reales.</p>
+    </div>
+
+    <div class="work-group">
+      <div class="work-group-head"><span class="dot"></span>Tiendas online</div>
+      <div class="work-list">
+        <div class="work-card">
+          <div class="work-media">
+            <div class="work-ph" aria-hidden="true"><span>Peppa</span></div>
+            <img src="assets/portfolio/peppa.jpg" alt="Captura de la tienda online de Peppa" loading="lazy" onerror="this.remove()">
+          </div>
+          <div class="work-body">
+            <span class="work-type">Tienda online de indumentaria</span>
+            <h3>Peppa, tienda online</h3>
+            <p>Tienda online para una marca de ropa de noche de Tucumán: catálogo con stock real por talle, pedidos armados automáticamente por WhatsApp y un panel para que la dueña gestione todo desde el celular.</p>
+            <div class="work-tags"><span>Next.js 15</span><span>TypeScript</span><span>CSS Modules</span><span>Supabase</span><span>PostgreSQL</span><span>Zod</span><span>React Hook Form</span><span>Vercel</span><span>Vitest</span></div>
+            <div class="work-links">
+              <a class="work-link" href="https://peppastore.vercel.app" target="_blank" rel="noopener">Ver sitio <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+              <a class="work-link" href="https://www.instagram.com/peppa.store1/" target="_blank" rel="noopener">Instagram de Peppa <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="work-group">
