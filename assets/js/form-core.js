@@ -4,7 +4,7 @@
 
 export const WEB3FORMS_KEY = '316c7807-b0b9-41f7-8d38-ede01ee35149';
 export const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
-export const WA_NUMBER = '5493812187233';
+export const WA_NUMBER = '5493816378896';
 
 // Características (códigos de área) de 3 dígitos. El 11 es el único de 2 dígitos;
 // el resto de las características argentinas tienen 4 dígitos.
