@@ -36,7 +36,43 @@
   .hero h1{font-size:clamp(34px,5.2vw,58px);max-width:15ch;margin-bottom:24px;}
   .hero-sub{font-size:18px;color:var(--text-muted);max-width:46ch;margin-bottom:36px;}
   .hero-art{position:relative;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;}
-  .hero-art svg{width:100%;height:100%;}
+  .hero-art svg{width:100%;height:100%;overflow:visible;}
+
+  /* ===== HERO INTERACTIVO (solo con JS y sin "reducir movimiento"; sin JS se ve el inicio estático) ===== */
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;}
+  #comb{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0;transition:opacity .6s ease;}
+  .hero.is-live #comb{opacity:1;}
+  .hero.is-live .hexfield{opacity:0;transition:opacity .6s ease;}
+  .h1-rot{display:none;}
+  .hero.is-live .h1-static{display:none;}
+  .hero.is-live .h1-rot{display:grid;grid-template-areas:"s";margin:.04em 0 .06em;white-space:nowrap;width:max-content;max-width:100%;}
+  @media(max-width:600px){ .hero.is-live .h1-rot{font-size:min(1em,8.4vw);} }
+  .h1-rot span{grid-area:s;font-style:italic;background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;padding-right:.08em;
+    opacity:0;transform:translateY(.45em);filter:blur(6px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.8,.2,1),filter .55s ease;}
+  .h1-rot span.on{opacity:1;transform:none;filter:none;}
+  .h1-rot span.out{opacity:0;transform:translateY(-.45em);filter:blur(6px);}
+  .hero-art{perspective:900px;}
+  .hero-art .art-glow{position:absolute;inset:12%;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(169,140,240,.35),rgba(111,163,245,.12) 45%,transparent 70%);filter:blur(20px);opacity:0;transition:opacity .8s ease;}
+  .hero-art .art-tilt,.hero-art .art-float{position:absolute;inset:0;}
+  .hero-art .art-tilt{transform-style:preserve-3d;will-change:transform;}
+  .hero.is-live .art-glow{opacity:1;}
+  .hero.is-live .art-float{animation:beeFloat 6s ease-in-out infinite;}
+  .hero.is-live .wing-l{transform-box:fill-box;transform-origin:100% 40%;animation:wingL 2.4s ease-in-out infinite;}
+  .hero.is-live .wing-r{transform-box:fill-box;transform-origin:0% 40%;animation:wingR 2.4s ease-in-out infinite;}
+  .assemble .comb polygon{stroke-dasharray:1;stroke-dashoffset:1;animation:combDraw .9s ease forwards;animation-delay:calc(var(--i)*90ms);}
+  .assemble .seg{transform-box:fill-box;transform-origin:50% 50%;opacity:0;animation:segPop .7s cubic-bezier(.2,1.4,.4,1) forwards;}
+  .assemble .seg-1{animation-delay:.75s;}
+  .assemble .seg-2{animation-delay:.9s;}
+  .hero.is-live .assemble .wing-l{opacity:0;animation:partIn .6s ease 1.05s forwards,wingL 2.4s ease-in-out 1.65s infinite;}
+  .hero.is-live .assemble .wing-r{opacity:0;animation:partIn .6s ease 1.05s forwards,wingR 2.4s ease-in-out 1.65s infinite;}
+  .assemble .stripe{opacity:0;animation:stripeIn .4s ease 1.25s forwards;}
+  @keyframes combDraw{to{stroke-dashoffset:0;}}
+  @keyframes segPop{from{opacity:0;transform:scale(.4) translateY(10%);}to{opacity:1;transform:none;}}
+  @keyframes partIn{to{opacity:.9;}}
+  @keyframes stripeIn{to{opacity:.7;}}
+  @keyframes beeFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  @keyframes wingL{0%,100%{transform:rotate(0);}50%{transform:rotate(-7deg);}}
+  @keyframes wingR{0%,100%{transform:rotate(0);}50%{transform:rotate(7deg);}}
 
   .trust-strip{
     margin-top:56px;padding-top:28px;border-top:1px solid var(--line);
@@ -269,10 +305,12 @@
     </svg>
   </div>
 
+  <canvas id="comb" aria-hidden="true"></canvas>
+
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow-line"><span class="dot"></span> Bee Code · Tucumán, Argentina</div>
-      <h1>Lanzá tu primera web sin depender de tutoriales ni de freelancers que desaparecen a mitad de camino</h1>
+      <h1><span class="sr-only">Lanzá tu primera web sin depender de tutoriales ni de freelancers que desaparecen a mitad de camino</span><span aria-hidden="true">Lanzá <span class="h1-static">tu primera web</span> <span class="h1-rot" id="heroRot"><span class="on">tu primera web</span><span>tu tienda online</span><span>tu sistema de turnos</span><span>tu app a medida</span></span> sin depender de tutoriales ni de freelancers que desaparecen a mitad de camino</span></h1>
       <p class="hero-sub">Diseño y desarrollo páginas, landings, apps y sistemas a medida para empresas y emprendedores que están armando su presencia online por primera vez.</p>
       <div class="cta-row">
         <a class="btn" href="https://wa.me/5493816378896?text=Hola%20Santiago!%20Quiero%20contarte%20sobre%20mi%20proyecto" target="_blank" rel="noopener">
@@ -289,8 +327,27 @@
       </div>
     </div>
 
-    <div class="hero-art" aria-hidden="true">
-      <svg viewBox="0 0 100 100" xmlns:xlink="http://www.w3.org/1999/xlink"><use href="#beeIcon" xlink:href="#beeIcon" width="100" height="100"/></svg>
+    <div class="hero-art" id="heroArt" aria-hidden="true">
+      <div class="art-glow" id="artGlow"></div>
+      <div class="art-tilt" id="artTilt"><div class="art-float">
+        <svg viewBox="145 55 90 90" id="heroBee">
+          <g class="comb" stroke="#8B7BD8" stroke-width="1.5" fill="none" opacity="0.4">
+            <polygon pathLength="1" style="--i:0" points="203.9,92 203.9,108 190,116 176.1,108 176.1,92 190,84"/>
+            <polygon pathLength="1" style="--i:1" points="190.05,68 190.05,84 176.15,92 162.25,84 162.25,68 176.15,60"/>
+            <polygon pathLength="1" style="--i:2" points="217.75,68 217.75,84 203.85,92 189.95,84 189.95,68 203.85,60"/>
+            <polygon pathLength="1" style="--i:3" points="231.6,92 231.6,108 217.7,116 203.8,108 203.8,92 217.7,84"/>
+            <polygon pathLength="1" style="--i:4" points="217.75,116 217.75,132 203.85,140 189.95,132 189.95,116 203.85,108"/>
+            <polygon pathLength="1" style="--i:5" points="190.05,116 190.05,132 176.15,140 162.25,132 162.25,116 176.15,108"/>
+            <polygon pathLength="1" style="--i:6" points="176.2,92 176.2,108 162.3,116 148.4,108 148.4,92 162.3,84"/>
+          </g>
+          <polygon class="wing-l" points="158,80 178,68 178,98 158,104" fill="#2A3560" opacity="0.9"/>
+          <polygon class="wing-r" points="222,80 202,68 202,98 222,104" fill="#2A3560" opacity="0.9"/>
+          <polygon class="seg seg-1" points="190,58 210,70 210,94 190,106 170,94 170,70" fill="url(#beeGradInv)"/>
+          <polygon class="seg seg-2" points="190,98 208,109 208,131 190,142 172,131 172,109" fill="url(#beeGradInv)"/>
+          <rect class="stripe" x="170" y="76" width="40" height="6" fill="#111B33" opacity="0.7"/>
+          <rect class="stripe" x="172" y="115" width="36" height="6" fill="#111B33" opacity="0.7"/>
+        </svg>
+      </div></div>
     </div>
   </div>
 </section>
@@ -761,6 +818,7 @@
   });
 </script>
 <script type="module" src="assets/js/contacto.js"></script>
+<script src="assets/js/hero.js" defer></script>
 
 </body>
 </html>
